@@ -1,9 +1,8 @@
 var express = require('express');
 var cors = require('cors');
 var fs = require('fs');
-require('dotenv').config()
+require('dotenv').config();
 const multer = require("multer");
-const path = require("path");
 
 let storage = multer.diskStorage({
   //make folder depend on file type and save file in folder same type (image/video)
@@ -11,11 +10,7 @@ let storage = multer.diskStorage({
     file.type = file.mimetype.split('/')[0];
     let dir = './files/' + file.type;
     try {
-      fs.readdir(dir).then(
-        () => {
-          cb(null, './files/' + file.type);
-        }
-      );
+      fs.readdir(dir).then(() => {cb(null, './files/' + file.type)};);
     } catch (error) {
       fs.mkdir(dir, () => {
         cb(null, './files/' + file.type);
