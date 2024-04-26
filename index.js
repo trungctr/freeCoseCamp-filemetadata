@@ -10,7 +10,7 @@ let storage = multer.diskStorage({
     file.type = file.mimetype.split('/')[0];
     let dir = './files/' + file.type;
     try {
-      fs.readdir(dir).then(() => {cb(null, './files/' + file.type)};);
+      fs.readdir(dir).then(() => {cb(null, './files/' + file.type)});
     } catch (error) {
       fs.mkdir(dir, () => {
         cb(null, './files/' + file.type);
@@ -20,7 +20,7 @@ let storage = multer.diskStorage({
   // make file name as filetype-timeSatmp.fileExtend
   filename: function (req, file, cb) {
     cb(null, file.mimetype.split('/')[0] + '-' + Date.now() + '.' + file.originalname.split('.').pop());
-  };
+  }
 });
 
 let upload = multer({ storage: storage });
